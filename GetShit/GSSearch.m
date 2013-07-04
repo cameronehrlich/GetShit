@@ -8,7 +8,6 @@
 
 #import "GSSearch.h"
 
-
 static NSString *thePirateBayUrl = @"http://thepiratebay.com";
 
 @implementation GSSearch
@@ -24,44 +23,64 @@ static NSString *thePirateBayUrl = @"http://thepiratebay.com";
 
 + (NSArray *) searchWithQueryString:(NSString *)query{
     
+    NSMutableArray *results = [NSMutableArray new];
+    
     TFHpple *doc = [[TFHpple alloc] initWithHTMLData:[NSData dataWithContentsOfURL:[self constructURLWithQueryString:query]]];
     NSMutableArray * elements  = [[doc searchWithXPathQuery:@"/html/body/div/div/div/table/tr"] mutableCopy];
     
     for (TFHppleElement *element in elements) {
-        GSSearchItem *tmpSearchItem = [[GSSearchItem alloc] init];
+        GSSearchItem *searchItem = [[GSSearchItem alloc] init];
         // get all the tds with in a tr
         NSArray *tmpTDs = [element childrenWithTagName:@"td"];
+        
         //get the title and the link the the comments
         TFHppleElement *tmpLink = [[[tmpTDs objectAtIndex:1] firstChildWithClassName:@"detName"] firstChildWithClassName:@"detLink"];
+
+         // link to the comments
+        // [NSString stringWithFormat:@"%@%@", thePirateBayUrl, [[tmpLink attributes] objectForKey:@"href"]];
+
         NSString *tmpTitle = [tmpLink text];
-        NSString *tmpURLString = [NSString stringWithFormat:@"%@%@", thePirateBayUrl, [[tmpLink attributes] objectForKey:@"href"]];
+        searchItem.title = tmpTitle;
+        
         
         // get the magnet link url
-        NSString *tmpMagnetString = [[[[tmpTDs objectAtIndex:1] firstChildWithTagName:@"a"] attributes] objectForKey:@"href"];
+        searchItem.magnet = [[[[tmpTDs objectAtIndex:1] firstChildWithTagName:@"a"] attributes] objectForKey:@"href"];
         
         // get categories
-        NSArray *tmpCategoryLinks = [[[tmpTDs objectAtIndex:0] firstChildWithTagName:@"center"] childrenWithTagName:@"a"];
         NSMutableArray *tmpCategories = [NSMutableArray new];
+
+        NSArray *tmpCategoryLinks = [[[tmpTDs objectAtIndex:0] firstChildWithTagName:@"center"] childrenWithTagName:@"a"];
         for (TFHppleElement *cat in tmpCategoryLinks) {
             [tmpCategories addObject:[cat text]];
         }
+        searchItem.category = [tmpCategories objectAtIndex:0];
         
-        
-        // get size
-        
-        // get seeders and leachers
-        
-        //get uploaded date
-        
-        
-        
-//        NSLog(@"%@ \n\n", tmpCatagory );
-//        [tmpSearchItem setTitle:[[tmpTDs objectAtIndex:1] searchWithXPathQuery:@"//div/a"];
 
+        TFHppleElement *tmpDescription = [[tmpTDs objectAtIndex:1] firstChildWithClassName:@"detDesc"];
+        NSArray *tmpDescriptionTDs = [[tmpDescription text] componentsSeparatedByString:@", "];
+        
+        // uploaded date
+        NSString *tmpUploadedString = [tmpDescriptionTDs objectAtIndex:0];
+        tmpUploadedString = [tmpUploadedString stringByReplacingOccurrencesOfString:@"Uploaded " withString:@""];
+        searchItem.uploaded = tmpUploadedString;
+
+        // size
+        NSString *tmpSizeString = [tmpDescriptionTDs objectAtIndex:1];
+        tmpSizeString = [tmpSizeString stringByReplacingOccurrencesOfString:@"Size " withString:@""];
+        searchItem.sizeOfItem = tmpSizeString;
+        
+        // seeders
+        TFHppleElement *tmpSeeders = [tmpTDs objectAtIndex:2];
+        searchItem.seeders = tmpSeeders.text;
+        
+        // leachers
+        TFHppleElement *tmpLeecher = [tmpTDs objectAtIndex:3];
+        searchItem.leechers = tmpLeecher.text;
+
+        [results addObject:searchItem];
     }
     
-    
-    return elements;
+    return [results copy];
 }
 
 + (NSURL *) constructURLWithQueryString: (NSString *) query {

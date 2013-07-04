@@ -10,33 +10,38 @@
 #import "GSAppDelegate.h"
 
 
-@implementation GSAppDelegate
+@implementation GSAppDelegate{
+    NSArray *searchObjects;
+    NSOperationQueue *operationQueue;
+}
+
+
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    
+    operationQueue = [NSOperationQueue new];
+    [operationQueue setMaxConcurrentOperationCount:NSOperationQueueDefaultMaxConcurrentOperationCount];
+    
     [_window center];
-    
-    _searchObject = [[GSSearch alloc] init];
-    [GSSearch searchWithQueryString:@"colbert"];
-    
     [_statusLabel setStringValue:@""];
     
-    
     [_tableView setDoubleAction:@selector(downloadItemAtSelectedRow:)];
-    
-    [_tableView setTarget:self];
-    [_tableView setDelegate:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getNotifications:) name:@"statusUpdate" object:nil];
     
 }
 
+-(void)applicationDidBecomeActive:(NSNotification *)notification{
+    [self focusSearchBar:nil];
+}
+
 -(void)getNotifications:(NSNotification*)notification{
     [_statusLabel setStringValue:[[notification userInfo] objectForKey:@"message"]];
     [_activityIndicator stopAnimation:nil];
-    [[_searchObject searchData] removeAllObjects];
     [_tableView reloadData];
 }
+
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication
 {
@@ -45,37 +50,37 @@
 
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
-    return [[_searchObject searchData] count];
+    return [searchObjects count];
 }
 
 -(NSString *)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    if (row < _searchObject.searchData.count) {
+    
+    if ([tableColumn.identifier isEqualToString:@"title"]) {
+        return [[searchObjects objectAtIndex:row] title];
         
-        if ([tableColumn.identifier isEqualToString:@"title"]) {
-            return [[_searchObject searchData][row] title];
-        }else if([tableColumn.identifier isEqualToString:@"category"]){
-            return [[_searchObject searchData][row] category];
-        }else if([tableColumn.identifier isEqualToString:@"seeders"]){
-            return [[_searchObject searchData][row] seeders];
-        }else if([tableColumn.identifier isEqualToString:@"leechers"]){
-            return [[_searchObject searchData][row] leechers];
-        }else if([tableColumn.identifier isEqualToString:@"size"]){
-            return [[_searchObject searchData][row] sizeOfItem];
-        }else if([tableColumn.identifier isEqualToString:@"uploaded"]){
-            return [[_searchObject searchData][row] uploaded];
-        }else if([tableColumn.identifier isEqualToString:@"magent"]){
-            return [[_searchObject searchData][row] magnet];
-        }else{
-                //not possible
-            NSLog(@"Error building table");
-            return @"Error building table";
-        }
+    }else if([tableColumn.identifier isEqualToString:@"category"]){
+        return [[searchObjects objectAtIndex:row] category];
+        
+    }else if([tableColumn.identifier isEqualToString:@"seeders"]){
+        return [[searchObjects objectAtIndex:row] seeders];
+        
+    }else if([tableColumn.identifier isEqualToString:@"leechers"]){
+        return [[searchObjects objectAtIndex:row] leechers];
+        
+    }else if([tableColumn.identifier isEqualToString:@"size"]){
+        return [[searchObjects objectAtIndex:row] sizeOfItem];
+        
+    }else if([tableColumn.identifier isEqualToString:@"uploaded"]){
+        return [[searchObjects objectAtIndex:row] uploaded];
+        
+    }else if([tableColumn.identifier isEqualToString:@"magent"]){
+        return [[searchObjects objectAtIndex:row] magnet];
+        
+    }else{
+        return @"Error loading table";
     }
-    return @"";
 }
-
-
 
 -(IBAction) downloadItemAtSelectedRow:(id) sender
 {
@@ -84,7 +89,7 @@
     while(index != NSNotFound){
         WebView *downloadWebView = [[WebView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
         [downloadWebView setHidden:YES];
-        [[downloadWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[_searchObject searchData][index] magnet]]]];
+        [[downloadWebView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[searchObjects objectAtIndex:index] magnet]]]];
             //increment
         index= [[_tableView selectedRowIndexes] indexGreaterThanIndex: index];
     }
@@ -94,31 +99,29 @@
     [_searchField becomeFirstResponder];
 }
 
-- (IBAction)searchAction:(id)sender
+- (IBAction)searchAction:(NSSearchField *)sender
 {
     [_tableView deselectAll:self];
     [_statusLabel setStringValue:@""];
     if([[_searchField.stringValue stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""]
        ||_searchField.stringValue == nil){
-        
-            //do nothing
+        searchObjects = @[];
+        [_tableView reloadData];
     }
     else{
+        NSLog(@"Searching : %@", sender.stringValue);
+        
         [_activityIndicator startAnimation:nil];
-//        dispatch_block_t block = ^{
-//            
-//            dispatch_queue_t main = dispatch_get_main_queue();
-//            dispatch_block_t reload = ^{
-//                if (_searchObject.searchData.count > 0) {
-//                    [_tableView reloadData];
-//                    [_activityIndicator stopAnimation:nil];
-//                }
-//            };
-//            
-//            dispatch_async(main, reload);
-//        };
-//        
-//        dispatch_async(queue, block);
+        
+        [operationQueue cancelAllOperations];
+        [operationQueue addOperationWithBlock:^{
+            NSArray *tmpSearch = [GSSearch searchWithQueryString:sender.stringValue];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                searchObjects = tmpSearch;
+                [_tableView reloadData];
+                [_activityIndicator stopAnimation:nil];
+            }];
+        }];
         
     }
     
