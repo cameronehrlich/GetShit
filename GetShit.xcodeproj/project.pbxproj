@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		32389FCF177641870025AE3B /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32389FCE177641870025AE3B /* Sparkle.framework */; };
-		32389FD1177642340025AE3B /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 32389FCE177641870025AE3B /* Sparkle.framework */; };
+		321B77C818F7366F007FC94B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 321B77C718F7366F007FC94B /* Images.xcassets */; };
 		32389FD4177643A90025AE3B /* dsa_priv.pem in Resources */ = {isa = PBXBuildFile; fileRef = 32389FD2177643A90025AE3B /* dsa_priv.pem */; };
 		32389FD5177643A90025AE3B /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 32389FD3177643A90025AE3B /* dsa_pub.pem */; };
-		328F1FE315FF57F7004B5851 /* GetShit.icns in Resources */ = {isa = PBXBuildFile; fileRef = 328F1FE215FF57F7004B5851 /* GetShit.icns */; };
 		32C0BBD015FEC5D400DC358D /* GSSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C0BBCF15FEC5D400DC358D /* GSSearch.m */; };
 		32C0BBD315FEC64200DC358D /* GSSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C0BBD215FEC64200DC358D /* GSSearchItem.m */; };
+		32FB30CF17859F2900AF40A1 /* GetShit.icns in Resources */ = {isa = PBXBuildFile; fileRef = 328F1FE215FF57F7004B5851 /* GetShit.icns */; };
 		32FB5DF715FEC46700814624 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32FB5DF615FEC46700814624 /* Cocoa.framework */; };
 		32FB5E0115FEC46700814624 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32FB5DFF15FEC46700814624 /* InfoPlist.strings */; };
 		32FB5E0315FEC46700814624 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FB5E0215FEC46700814624 /* main.m */; };
@@ -25,21 +24,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		32254EE115FFF55800E7E4DB /* CopyFiles */ = {
+		32254EE115FFF55800E7E4DB /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				32389FD1177642340025AE3B /* Sparkle.framework in CopyFiles */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1EEE4659531C4F7AB3EEE7CA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		32389FCE177641870025AE3B /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		321B77C718F7366F007FC94B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		32389FD2177643A90025AE3B /* dsa_priv.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_priv.pem; sourceTree = "<group>"; };
 		32389FD3177643A90025AE3B /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		328F1FE215FF57F7004B5851 /* GetShit.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GetShit.icns; sourceTree = SOURCE_ROOT; };
@@ -71,7 +70,6 @@
 				32FB5E1415FEC52600814624 /* WebKit.framework in Frameworks */,
 				32FB5DF715FEC46700814624 /* Cocoa.framework in Frameworks */,
 				3D5FAE1DF1E34DD7AA0D744E /* libPods.a in Frameworks */,
-				32389FCF177641870025AE3B /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +108,6 @@
 		32FB5DF515FEC46700814624 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				32389FCE177641870025AE3B /* Sparkle.framework */,
 				32FB5DF915FEC46700814624 /* AppKit.framework */,
 				32FB5DFB15FEC46700814624 /* Foundation.framework */,
 				32FB5E1315FEC52600814624 /* WebKit.framework */,
@@ -127,6 +124,7 @@
 				32FB5E0815FEC46700814624 /* GSAppDelegate.h */,
 				32FB5E0915FEC46700814624 /* GSAppDelegate.m */,
 				32FB18151603E8A300FDFA52 /* Search Classes */,
+				321B77C718F7366F007FC94B /* Images.xcassets */,
 				32FB5DFD15FEC46700814624 /* Supporting Files */,
 			);
 			path = GetShit;
@@ -158,7 +156,7 @@
 				32FB5DEE15FEC46700814624 /* Sources */,
 				32FB5DEF15FEC46700814624 /* Frameworks */,
 				32FB5DF015FEC46700814624 /* Resources */,
-				32254EE115FFF55800E7E4DB /* CopyFiles */,
+				32254EE115FFF55800E7E4DB /* Copy Files */,
 				E98D03B8C6FE4D30846383EE /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -177,7 +175,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = GS;
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Cameron Ehrlich";
 			};
 			buildConfigurationList = 32FB5DEC15FEC46700814624 /* Build configuration list for PBXProject "GetShit" */;
@@ -204,10 +202,11 @@
 			files = (
 				32FB5E0115FEC46700814624 /* InfoPlist.strings in Resources */,
 				32FB5E0715FEC46700814624 /* Credits.rtf in Resources */,
+				321B77C818F7366F007FC94B /* Images.xcassets in Resources */,
 				32FB5E0D15FEC46700814624 /* MainMenu.xib in Resources */,
-				328F1FE315FF57F7004B5851 /* GetShit.icns in Resources */,
 				32389FD4177643A90025AE3B /* dsa_priv.pem in Resources */,
 				32389FD5177643A90025AE3B /* dsa_pub.pem in Resources */,
+				32FB30CF17859F2900AF40A1 /* GetShit.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +289,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -320,7 +318,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -344,7 +341,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1EEE4659531C4F7AB3EEE7CA /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -366,7 +363,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1EEE4659531C4F7AB3EEE7CA /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (

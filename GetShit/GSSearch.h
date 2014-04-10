@@ -15,6 +15,6 @@
 
 @property (nonatomic, strong) NSMutableArray *searchData;
 
-+ (NSArray *) searchWithQueryString:(NSString *)query;
++ (NSArray *)searchWithQueryString:(NSString *)query;
 
 @end

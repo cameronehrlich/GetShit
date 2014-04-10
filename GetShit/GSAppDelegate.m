@@ -15,13 +15,10 @@
     NSOperationQueue *operationQueue;
 }
 
-
-
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    
     operationQueue = [NSOperationQueue new];
-    [operationQueue setMaxConcurrentOperationCount:NSOperationQueueDefaultMaxConcurrentOperationCount];
+    [operationQueue setMaxConcurrentOperationCount:1];
     
     [_window center];
     [_statusLabel setStringValue:@""];
@@ -32,11 +29,13 @@
     
 }
 
--(void)applicationDidBecomeActive:(NSNotification *)notification{
+-(void)applicationDidBecomeActive:(NSNotification *)notification
+{
     [self focusSearchBar:nil];
 }
 
--(void)getNotifications:(NSNotification*)notification{
+-(void)getNotifications:(NSNotification*)notification
+{
     [_statusLabel setStringValue:[[notification userInfo] objectForKey:@"message"]];
     [_activityIndicator stopAnimation:nil];
     [_tableView reloadData];
@@ -95,7 +94,8 @@
     }
 }
 
-- (IBAction)focusSearchBar:(id)sender {
+- (IBAction)focusSearchBar:(id)sender
+{
     [_searchField becomeFirstResponder];
 }
 

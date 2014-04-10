@@ -1,4 +1,5 @@
 platform :osx, '10.8'
 
-pod 'AFNetworking', '~> 1.3.1'
-pod 'hpple', '~> 0.2.0'
+pod 'AFNetworking', '~> 2.2'
+pod 'hpple', '~> 0.2'
+pod 'Sparkle-pornel', '~> 1.6'
