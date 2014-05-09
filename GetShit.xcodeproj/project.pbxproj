@@ -12,7 +12,6 @@
 		32389FD5177643A90025AE3B /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 32389FD3177643A90025AE3B /* dsa_pub.pem */; };
 		32C0BBD015FEC5D400DC358D /* GSSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C0BBCF15FEC5D400DC358D /* GSSearch.m */; };
 		32C0BBD315FEC64200DC358D /* GSSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C0BBD215FEC64200DC358D /* GSSearchItem.m */; };
-		32FB30CF17859F2900AF40A1 /* GetShit.icns in Resources */ = {isa = PBXBuildFile; fileRef = 328F1FE215FF57F7004B5851 /* GetShit.icns */; };
 		32FB5DF715FEC46700814624 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32FB5DF615FEC46700814624 /* Cocoa.framework */; };
 		32FB5E0115FEC46700814624 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32FB5DFF15FEC46700814624 /* InfoPlist.strings */; };
 		32FB5E0315FEC46700814624 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FB5E0215FEC46700814624 /* main.m */; };
@@ -41,7 +40,6 @@
 		321B77C718F7366F007FC94B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		32389FD2177643A90025AE3B /* dsa_priv.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_priv.pem; sourceTree = "<group>"; };
 		32389FD3177643A90025AE3B /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
-		328F1FE215FF57F7004B5851 /* GetShit.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GetShit.icns; sourceTree = SOURCE_ROOT; };
 		32C0BBCE15FEC5D400DC358D /* GSSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSSearch.h; sourceTree = "<group>"; };
 		32C0BBCF15FEC5D400DC358D /* GSSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSSearch.m; sourceTree = "<group>"; };
 		32C0BBD115FEC64200DC358D /* GSSearchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSSearchItem.h; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 			children = (
 				32389FD2177643A90025AE3B /* dsa_priv.pem */,
 				32389FD3177643A90025AE3B /* dsa_pub.pem */,
-				328F1FE215FF57F7004B5851 /* GetShit.icns */,
 				32FB5DFE15FEC46700814624 /* GetShit-Info.plist */,
 				32FB5DFF15FEC46700814624 /* InfoPlist.strings */,
 				32FB5E0215FEC46700814624 /* main.m */,
@@ -206,7 +203,6 @@
 				32FB5E0D15FEC46700814624 /* MainMenu.xib in Resources */,
 				32389FD4177643A90025AE3B /* dsa_priv.pem in Resources */,
 				32389FD5177643A90025AE3B /* dsa_pub.pem in Resources */,
-				32FB30CF17859F2900AF40A1 /* GetShit.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
